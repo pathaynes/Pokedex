@@ -1,0 +1,38 @@
+body {
+    margin: 0;
+}
+
+header {
+    display: flex;
+    justify-content: center;
+    background-color: yellow;
+    margin-top: 0;
+    border: solid blue;
+    padding: 20px;
+}  
+
+footer {
+    background-color: yellow;
+    border: solid blue;
+}
+
+#logo {
+    width: 350px;
+    height: 300px;
+}
+
+#grid-container {
+    display: grid;
+    grid-template-columns: 10% 90%;
+    grid-template-areas: "dropDown" "pokedex";
+    grid-template-rows: auto;
+}
+
+.drop-down {
+    grid-area: dropDown;
+}
+
+.pokemon {
+    grid-area: pokedex;
+}
+
