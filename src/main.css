@@ -7,7 +7,6 @@ header {
     justify-content: center;
     background-color: yellow;
     margin-top: 0;
-    border: solid blue;
     padding: 20px;
 }  
 
@@ -30,6 +29,8 @@ footer {
 
 .drop-down {
     grid-area: dropDown;
+    background-color: yellow;
+
 }
 
 .pokemon {
