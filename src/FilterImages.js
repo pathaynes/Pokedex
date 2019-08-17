@@ -1,4 +1,4 @@
-import Component from './components/components.js';
+import Component from './component/component.js';
 
 class FilterPokemon extends Component {
     

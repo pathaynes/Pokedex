@@ -1,8 +1,8 @@
-import Component from '../components.js';
+import Component from '../component.js';
 import FilterPokemon from '../../FilterImages.js';
 import pokemon from '../../../data/pokemon.js';
 import PokemonList from '../../ImageList.js';
-import Header from './Header.js';
+import Header from './header.js';
 
 class App extends Component {
 
@@ -32,7 +32,7 @@ class App extends Component {
                 else {
                     filterPokemon = pokemon.filter(poke => {
                       // eslint-disable-next-line 
-                        return poke.attack == pokemon;
+                        return poke.attack == pokemonAttack;
                     });
                 }  
                 const updateProps = { pokemon: filterPokemon };
