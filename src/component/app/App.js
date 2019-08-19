@@ -1,65 +1,72 @@
 import Component from '../component.js';
-import FilterPokemon from '../../FilterImages.js';
-import pokemon from '../../../data/pokemon.js';
-import PokemonList from '../../ImageList.js';
 import Header from './header.js';
 import Footer from './footer.js';
+import FilterPokemon from '../../FilterImages.js';
+import PokemonList from '../../ImageList.js';
+import Search from '../../options/Search.js';
+import Paging from '../../options/Paging.js';
+import hashStorage from '../../services/hash-storage.js';
 
 class App extends Component {
 
     onRender(dom) {
 
         const header = new Header();
-        const headerDOM = header.renderDOM();
-        dom.prepend(headerDOM);
+        dom.prepend(header.renderDOM());
 
         const footer = new Footer();
-        const footerDOM = footer.renderDOM();
-        dom.prepend(footerDOM);
+        dom.prepend(footer.renderDOM());
 
-        const props = {
-            pokemon: pokemon
-        };
+        const optionsSection = dom.querySelector('.options-section');
+        const search = new Search();
+        optionsSection.appendChild(search.renderDOM());
 
-        const pokemonList = new PokemonList(props);
-        const pokemonListDOM = pokemonList.renderDOM();
-        const listArea = dom.querySelector('.list');
-        listArea.appendChild(pokemonListDOM);
-        
-        const filterPokemonProps = {
-            pokemon: pokemon,
-            onFilter: (pokemonAttack) => {
-                let filterPokemon;
-                // eslint-disable-next-line 
-                if(pokemonAttack == 'all') {
-                    filterPokemon = pokemon;
-                }
-                else {
-                    filterPokemon = pokemon.filter(poke => {
-                      // eslint-disable-next-line 
-                        return poke.attack == pokemonAttack;
-                    });
-                }  
-                const updateProps = { pokemon: filterPokemon };
-                pokemonList.update(updateProps);
-            }
-        };
-        const filterPokemon = new FilterPokemon(filterPokemonProps);
-        const filterPokemonDOM = filterPokemon.renderDOM();
+        const listSection = dom.querySelector('.list-section');
 
-        const selectSection = dom.querySelector('.select-container');
-        selectSection.appendChild(filterPokemonDOM);
-    }
+        const paging = new Paging();
+        listSection.appendChild(paging.renderDOM());
+
+        const pokemonList = new PokemonList({ pokemon: [] });
+        listSection.appendChild(pokemonList.renderDOM())
+
+        function loadPokemonList() {
+            const options = hashStorage.get();
+            getPokemon(options)
+              .then(data => {
+                  const pokemon = data.results;
+                  cont totalCount = data.count;
+
+                  pokemonList.update({ pokemon: pokemon });
+                  paging.update({
+                      totalCount: totalCount,
+                      currentPage: +options.page
+                  });
+              });
+        }
+
+        loadPokemonList();
+
+        window.addEventListener('hashchange', () => {
+            loadPokemonList();
+        });
+    }    
 
     renderHTML() {
         return /*html*/`
+           <div>
+              <!--- header goes here -->
 
-    <div>
-      <main class="grid-container">
-        <div class="select-container"></div>
-        <div class="list"></div> 
-      </main>
-    </div>
+              <main>
+                 <section class="options-sections">
+                     <!-- options go here -->
+                <section>
+
+                <section class="list-section">
+                    <!-- paging goes here -->
+                    <!-- quote list goes here -->
+                </section>
+            </main>
+        </div>
     `;
     }
 }
