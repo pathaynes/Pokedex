@@ -1,9 +1,8 @@
 import Component from '../component.js';
 import Header from './header.js';
 import Footer from './footer.js';
-import FilterPokemon from '../../FilterImages.js';
 import PokemonList from '../../ImageList.js';
-import { getPokemon } from  '../../services/pokemon-api.js';
+import { getPokemon } from '../../services/pokemon-api.js';
 import Search from '../../options/Search.js';
 import Paging from '../../options/Paging.js';
 import hashStorage from '../../services/hash-storage.js';
@@ -34,7 +33,6 @@ class App extends Component {
             const options = hashStorage.get();
             getPokemon(options)
                 .then(data => {
-                    console.log(data);
                     const pokemon = data.results.results;
                     const totalCount = data.results.count;
 

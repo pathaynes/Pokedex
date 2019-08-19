@@ -7,7 +7,6 @@ export function getPokemon(options) {
     const search = options.search;
 
     const url = `${URL}?page=${page || 1}&pokemon=${search || ''}`;
-console.log(url);
     return fetch(url)
         .then(response => response.json())
         // need to fake getting a total page count,
