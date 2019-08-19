@@ -3,6 +3,7 @@ import FilterPokemon from '../../FilterImages.js';
 import pokemon from '../../../data/pokemon.js';
 import PokemonList from '../../ImageList.js';
 import Header from './header.js';
+import Footer from './footer.js';
 
 class App extends Component {
 
@@ -11,6 +12,10 @@ class App extends Component {
         const header = new Header();
         const headerDOM = header.renderDOM();
         dom.prepend(headerDOM);
+
+        const footer = new Footer();
+        const footerDOM = footer.renderDOM();
+        dom.prepend(footerDOM);
 
         const props = {
             pokemon: pokemon

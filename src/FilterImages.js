@@ -15,12 +15,12 @@ class FilterPokemon extends Component {
         const optionsHTML = renderOptionsHTML(types);
 
         return /*html*/`
-        <select id="search-sort">
+          <select id="search-sort">
             <option value="all">ALL</option>
             ${optionsHTML}
-        </select>
+          </select>
         `;
-    }
+    } 
 }
 
 
