@@ -1,13 +1,13 @@
 
 const URL = 'https://alchemy-pokedex.herokuapp.com/api/pokedex';
 
-export function getQuotes(options) {  
+export function getPokemon(options) {  
 
     const page = options.page || 1;
     const search = options.search;
 
-    const url = `${URL}?page=${page || 1}&search=${search || ''}`;
-
+    const url = `${URL}?page=${page || 1}&pokemon=${search || ''}`;
+console.log(url);
     return fetch(url)
         .then(response => response.json())
         // need to fake getting a total page count,

@@ -3,6 +3,7 @@ import Header from './header.js';
 import Footer from './footer.js';
 import FilterPokemon from '../../FilterImages.js';
 import PokemonList from '../../ImageList.js';
+import { getPokemon } from  '../../services/pokemon-api.js';
 import Search from '../../options/Search.js';
 import Paging from '../../options/Paging.js';
 import hashStorage from '../../services/hash-storage.js';
@@ -17,7 +18,7 @@ class App extends Component {
         const footer = new Footer();
         dom.prepend(footer.renderDOM());
 
-        const optionsSection = dom.querySelector('.options-section');
+        const optionsSection = dom.querySelector('.options-sections');
         const search = new Search();
         optionsSection.appendChild(search.renderDOM());
 
@@ -27,21 +28,22 @@ class App extends Component {
         listSection.appendChild(paging.renderDOM());
 
         const pokemonList = new PokemonList({ pokemon: [] });
-        listSection.appendChild(pokemonList.renderDOM())
+        listSection.appendChild(pokemonList.renderDOM());
 
         function loadPokemonList() {
             const options = hashStorage.get();
             getPokemon(options)
-              .then(data => {
-                  const pokemon = data.results;
-                  cont totalCount = data.count;
+                .then(data => {
+                    console.log(data);
+                    const pokemon = data.results.results;
+                    const totalCount = data.results.count;
 
-                  pokemonList.update({ pokemon: pokemon });
-                  paging.update({
-                      totalCount: totalCount,
-                      currentPage: +options.page
-                  });
-              });
+                    pokemonList.update({ pokemon: pokemon });
+                    paging.update({
+                        totalCount: totalCount,
+                        currentPage: +options.page
+                    });
+                });
         }
 
         loadPokemonList();
