@@ -2,7 +2,7 @@ ul {
     display: flex;
     justify-content: space-evenly;
     flex-wrap: wrap;
-    margin-top: 240px;
+    margin-top: 200px;
     margin-left: 100px;
     font-family: sans-serif;
     list-style: none;

@@ -55,12 +55,7 @@ class App extends Component {
         return /*html*/`
            <div>
               <!--- header goes here -->
-
               <main>
-                 <section class="options-sections">
-                     <!-- options go here -->
-                <section>
-
                 <section class="list-section">
                     <!-- paging goes here -->
                     <!-- quote list goes here -->

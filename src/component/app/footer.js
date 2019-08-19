@@ -5,6 +5,9 @@ class Footer extends Component {
         return /*html*/ `
     <footer>
        <div class="flex">
+       <section class="options-sections">
+                     <!-- options go here -->
+                </section>
          <img src="./data/assets/pokeball(transparent).png" id="pokeball">
         </div>
     </footer>
